@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Game</title>
-    <link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<title>game</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="game.js"></script>
-<!-- accepts feedback-->
+	<h4 style="font: normal 5px; color:white"> Psst... Use W for UP, S for DOWN, A for LEFT and D for RIGHT Orrrr Use the arrowkeys :) </h4>
+	<h2 style="color:white"> Oh.. and press space bar to pause the game </h2>
+	<script src="game.js"></script>
+	<h3 id= "score" style="font:normal 20px monospace; color: white;"> Score: 0</h3>
+
+	<!-- accepts feedback-->
 	<h2 style="color:white" >Have a feedback?</h2>
-	<form action="contact.php" method="post" enctype="text/plain">
+	<form action="mailto:e1500943@edu.vamk.fi" method="post" enctype="text/plain">
 		Name:<input type="text" name="name"><br>
 		E-mail:<input type="email" name="email"><br>
-		Comment:<br><textarea rows="5" cols="40" placeholder="I just wanna say .." required name="comment"></textarea><br><br>
+		Comment:<br><textarea name="comment" >Enter your comment here :) ...</textarea><br><br>
 		<input type="submit" value="Send">
+		<input type="reset" value="Reset">
 	</form>
+
 </body>
 </html>
