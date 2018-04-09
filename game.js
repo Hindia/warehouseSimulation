@@ -102,7 +102,7 @@ function update(){
 	else
 		score+=2;
 
-	}
+
 	document.getElementById("score").innerHTML = "Score: "+ score;
 }
 
