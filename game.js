@@ -1,18 +1,13 @@
 //settings
-var snakeX=2;
-var snakeY=2;
+var playerX=2;
+var playerY=2;
 var height=20;
 var width=24;
 var speed=100;
 var increment=2;
 
 //game variables
-var length =0;
 var score =0;
-var tailX=[snakeX];
-var tailY=[snakeY];
-var fX;
-var fY;
 var running=false;
 var gameOver=false;
 var direction=1;//right 1, left -1, down -2, up 2
@@ -27,11 +22,10 @@ function run(){
 //initializing the game
 function init(){
 	createMap();
-	createSnake();
-	createFruit();
+	createPlayer();
 }
 
-//generates the map for the snake
+//generates the map for the player
 function createMap(){
 	document.write("<table>");
 	for(var y = 0;y < height;y++){
@@ -47,9 +41,9 @@ function createMap(){
 	document.write("</table>");
 }
 
-//generates a snake
-function createSnake(){
-	setType(snakeX,snakeY,"snake");
+//generates a player
+function createPlayer(){
+	setType(playerX,playerY,"player");
 }
 
 //gets the x y coordinate values
@@ -61,19 +55,6 @@ function get(x,y){
 function setType(x,y,value){
 	if(get(x,y) != null )
 		get(x,y).setAttribute("class",value);
-}
-
-//generates the fruits that pop randomly
-function createFruit(){
-	var found = false;
-	while(!found && (length < (width-2) * (height-2) + 1)){
-		var fruitX = rand(1, width-1);
-		var fruitY = rand(1,height-1);
-		if(getType(fruitX,fruitY) == "blank") found=true;
-	}
-	setType(fruitX,fruitY,"fruit");
-	fX=fruitX;
-	fY=fruitY;
 }
 
 //creates a random value between the min and max
@@ -109,41 +90,21 @@ function gameLoop(){
 	}
 }
 
-//constantly updates the position of the snake
+//constantly updates the position of the player
 function update(){
-	setType(fX, fY, "fruit");
-	updateTail();
-	setType(tailX[length], tailY[length], "blank");
-	if(direction==2) snakeY--;
-	else if (direction==-2) snakeY++;
-	else if (direction==1) snakeX++;
-	else if (direction==-1) snakeX--;
-	setType(snakeX,snakeY,"snake");
-	for(var i=tailX.length-1; i>= 0; i--){
-		if(snakeX == tailX[i] && snakeY == tailY[i]){	//if it hits/eats itself
-			gameOver=true;
-			break;
-		}
-	}
-	if (snakeX == 0 || snakeX == width-1 || snakeY == 0 || snakeY == height-1)	//if it hits the wall
+	if(direction==2) playerY--;
+	else if (direction==-2) playerY++;
+	else if (direction==1) playerX++;
+	else if (direction==-1) playerX--;
+	setType(playerX,playerY,"player");
+	if (playerX == 0 || playerX == width-1 || playerY == 0 || playerY == height-1)	//if it hits the wall
 		gameOver=true;
-	else if(snakeX == fX && snakeY==fY){
+	else
 		score+=2;
-		createFruit();
-		length+=increment;
 
 	}
 	document.getElementById("score").innerHTML = "Score: "+ score;
 }
 
-//updates the position of the tail of the snake
-function updateTail(){
-	for(var i=length; i>0 ;i--){
-		tailX[i]=tailX[i-1];
-		tailY[i]=tailY[i-1];
-	}
-	tailX[0]=snakeX;
-	tailY[0]=snakeY;
-}
 
 run();

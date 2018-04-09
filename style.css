@@ -1,7 +1,4 @@
-*{
-	padding:5px;
-	margin:10px;
-}
+
 body{
 	background-color:gray;
 }
@@ -15,7 +12,7 @@ td{
 	background-color:gray;
 }
 
-.snake{
+.player{
 	background-color:black;
 }
 
@@ -23,6 +20,6 @@ td{
 	background-color:red;
 }
 
-.fruit{
+.shelf{
 	background-color:green;
 }
