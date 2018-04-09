@@ -1,3 +1,7 @@
+*{
+	padding:5px;
+	margin:10px;
+}
 
 body{
 	background-color:gray;
@@ -21,10 +25,7 @@ td{
 .shelf{
 	background-color:black;
 }
+
 .wall{
 	background-color:black;
-}
-
-.fruit{
-	background-color:green;
 }

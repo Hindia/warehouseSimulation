@@ -7,10 +7,7 @@ var speed=100;
 var increment=2;
 
 //game variables
-var length =0;
 var score =0;
-var fX;
-var fY;
 var running=false;
 var gameOver=false;
 var direction=1;//right 1, left -1, down -2, up 2
@@ -44,7 +41,7 @@ function createMap(){
 	document.write("</table>");
 }
 
-//generates a snake
+//generates a player
 function createPlayer(){
 	setType(playerX,playerY,"player");
 }
@@ -104,9 +101,8 @@ function update(){
 
 	if (playerX == 0 || playerX == width-1 || playerY == 0 || playerY == height-1)	//if it hits the wall
 		gameOver=true;
-	else if(playerX == fX && playerY==fY){
+	else {
 		score+=2;
-		length+=increment;
 
 	}
 	document.getElementById("score").innerHTML = "Score: "+ score;
