@@ -1,0 +1,30 @@
+
+body{
+	background-color:gray;
+}
+
+td{
+	width:20px;
+	height:20px;
+}
+
+.blank{
+	background-color:gray;
+}
+
+.player{
+	background-color:white;
+	padding:5px;
+	margin:10px;
+
+}
+.shelf{
+	background-color:black;
+}
+.wall{
+	background-color:black;
+}
+
+.fruit{
+	background-color:green;
+}
