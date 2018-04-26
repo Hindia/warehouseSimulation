@@ -1,11 +1,11 @@
+
 //settings
-var playerX=2;
-var playerY=2;
+var playerX=10;
+var playerY=10;
 var height=20;
 var width=24;
 var speed=100;
 var increment=2;
-
 //game variables
 var score =0;
 var running=false;
@@ -13,6 +13,14 @@ var gameOver=false;
 var direction=1;//right 1, left -1, down -2, up 2
 var int;
 
+function buildCanvas(settings){
+
+
+          var canvas = document.getElementById("canvas");
+          var c = canvas.getContext("2d");
+		  var person = new Image();
+          person.src = 'person.png';
+}
 //entry point of the game
 function run(){
 	init();
@@ -43,7 +51,7 @@ function createMap(){
 
 //generates a player
 function createPlayer(){
-	setType(playerX,playerY,"player");
+	c.drawImage(playerX,playerY,10);
 }
 
 //gets the x y coordinate values
@@ -92,13 +100,30 @@ function gameLoop(){
 
 //constantly updates the position of the player
 function update(){
-	if(direction==2) playerY--;
-	else if (direction==-2) playerY++;
-	else if (direction==1) playerX++;
-	else if (direction==-1) playerX--;
+	if(direction==2){
+		c.clear();
+		playerY--; 
+		c.drawImage(playerX,playerY,10);
+		} 
+	else if (direction==-2){
+		c.clear();
+		playerY++; 
+		c.drawImage(playerX,playerY,10);
+		} 
+	else if (direction==1){
+		c.clear();
+		playerX++; 
+		c.drawImage(playerX,playerY,10);
+		} 
+	else if (direction==-1) {
+		c.clear();
+		playerX--; 
+		c.drawImage(playerX,playerY,10);
+		} 
 	setType(playerX,playerY,"player");
 	if (playerX == 0 || playerX == width-1 || playerY == 0 || playerY == height-1)	//if it hits the wall
-		gameOver=true;
+		//can't move further
+		score=0;
 	else
 		score+=2;
 
