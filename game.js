@@ -2,9 +2,46 @@ var canvas = document.getElementById('canvas');
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 var c = canvas.getContext("2d");
+var steps=0;
+var playerX=50;
+var playerY=canvas.height-200;
 var img = new Image();
 img.src = "img/person.png";
- c.drawImage(img, 50, canvas.height-150,100,100);
+c.drawImage(img, playerX, playerY,100,100);
+ 
+ window.addEventListener("keydown", function (event){
+	var key= event.code;	//variable for holding the key pressed
+	if(playerY > 120 && (key == "ArrowUp")) {
+			steps+=1;
+			playerY -=10;
+			c.clearRect(10,100, canvas.width-250,canvas.height-200);
+			c.drawImage(img, playerX, playerY,100,100);
+			c.clearRect(canvas.width-200,canvas.height-680, canvas.width,canvas.height-500);
+			c.fillText(steps, canvas.width-180,canvas.height-650);
+		}
+	else if(playerY < canvas.height-200 && (key == "ArrowDown" )) {
+			steps+=1;
+			playerY +=10;
+			c.clearRect(10,100, canvas.width-250,canvas.height-200);
+			c.drawImage(img, playerX, playerY,100,100);
+			c.fillText(steps, canvas.width-180,canvas.height-650);
+		}
+		
+	else if(playerX >10 && (key == "ArrowLeft" )){
+			steps+=1;
+			playerX -=10;
+			c.clearRect(10,100, canvas.width-250,canvas.height-200);
+			c.drawImage(img, playerX, playerY,100,100);
+			c.fillText(steps, canvas.width-180,canvas.height-650);
+		}	
+	else if(playerX < canvas.width-300 && (key == "ArrowRight")){
+			steps+=1;
+			playerX +=10;
+			c.clearRect(10,100, canvas.width-250,canvas.height-200);
+			c.drawImage(img, playerX, playerY,100,100);
+			c.fillText(steps, canvas.width-180,canvas.height-650);
+		}	
+}, true);
 
 c.font="30px papyrus";
 c.fillText("VAMK + NOVIA", 10,30);
@@ -12,13 +49,10 @@ c.fillText("VAMK + NOVIA", 10,30);
 c.font="small-caps 20px Arial";
 c.fillText("Warehouse Picking Basics: Pick and Learn!", 80,80);
 
-c.font="20px Tw Cen MT";
-c.fillText("Use the arrow keys to move around and click on the item to pick it!", canvas.width-1260,canvas.height-10);
-
 //the warehouse
 c.beginPath();
 c.moveTo(10,100);
-c.lineTo(canvas.width-200,100);
+c.lineTo(canvas.width-200,100);//
 c.lineTo(canvas.width-200,100);
 c.lineTo(canvas.width-200,canvas.height-50);
 c.lineTo(10,canvas.height-50);
@@ -63,9 +97,8 @@ c.fillStyle='black';
 c.font="20px Tw Cen MT";
 c.fillText("Time Lapse", canvas.width-180,canvas.height-800);
 
-c.font=" 20px Tw Cen MT";
 c.fillText("Total Steps", canvas.width-180,canvas.height-700);
 
 //pickup list
-c.font="20px Tw Cen MT";
-c.fillText("Pick up list", canvas.width-180,canvas.height-600);
+
+c.fillText("Pick up list", canvas.width-180,canvas.height-400);
