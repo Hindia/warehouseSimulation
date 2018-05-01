@@ -8,6 +8,8 @@ var playerY=canvas.height-200;
 var img = new Image();
 img.src = "img/person.png";
 c.drawImage(img, playerX, playerY,100,100);
+c.font="20px Tw Cen MT";
+c.fillText(steps, canvas.width-150,canvas.height-250);
  
  window.addEventListener("keydown", function (event){
 	var key= event.code;	//variable for holding the key pressed
@@ -16,15 +18,16 @@ c.drawImage(img, playerX, playerY,100,100);
 			playerY -=10;
 			c.clearRect(10,100, canvas.width-250,canvas.height-200);
 			c.drawImage(img, playerX, playerY,100,100);
-			c.clearRect(canvas.width-200,canvas.height-680, canvas.width,canvas.height-500);
-			c.fillText(steps, canvas.width-180,canvas.height-650);
+			c.clearRect(canvas.width-200,canvas.height-280, canvas.width,canvas.height-100);
+			c.fillText(steps, canvas.width-150,canvas.height-250);
 		}
 	else if(playerY < canvas.height-200 && (key == "ArrowDown" )) {
 			steps+=1;
 			playerY +=10;
 			c.clearRect(10,100, canvas.width-250,canvas.height-200);
 			c.drawImage(img, playerX, playerY,100,100);
-			c.fillText(steps, canvas.width-180,canvas.height-650);
+			c.clearRect(canvas.width-200,canvas.height-280, canvas.width,canvas.height-100);
+			c.fillText(steps, canvas.width-150,canvas.height-250);
 		}
 		
 	else if(playerX >10 && (key == "ArrowLeft" )){
@@ -32,14 +35,16 @@ c.drawImage(img, playerX, playerY,100,100);
 			playerX -=10;
 			c.clearRect(10,100, canvas.width-250,canvas.height-200);
 			c.drawImage(img, playerX, playerY,100,100);
-			c.fillText(steps, canvas.width-180,canvas.height-650);
+			c.clearRect(canvas.width-200,canvas.height-280, canvas.width,canvas.height-100);
+			c.fillText(steps, canvas.width-150,canvas.height-250);
 		}	
-	else if(playerX < canvas.width-300 && (key == "ArrowRight")){
+	else if(playerX < canvas.width-350 && (key == "ArrowRight")){
 			steps+=1;
 			playerX +=10;
 			c.clearRect(10,100, canvas.width-250,canvas.height-200);
 			c.drawImage(img, playerX, playerY,100,100);
-			c.fillText(steps, canvas.width-180,canvas.height-650);
+			c.clearRect(canvas.width-200,canvas.height-280, canvas.width,canvas.height-100);
+			c.fillText(steps, canvas.width-150,canvas.height-250);
 		}	
 }, true);
 
@@ -95,10 +100,10 @@ animate();
 c.fillStyle='black';
 //counters
 c.font="20px Tw Cen MT";
-c.fillText("Time Lapse", canvas.width-180,canvas.height-800);
+c.fillText("Time Lapse", canvas.width-180,canvas.height-500);
 
-c.fillText("Total Steps", canvas.width-180,canvas.height-700);
+c.fillText("Total Steps", canvas.width-180,canvas.height-300);
 
 //pickup list
 
-c.fillText("Pick up list", canvas.width-180,canvas.height-400);
+c.fillText("Pick up list", canvas.width-180,canvas.height-800);
