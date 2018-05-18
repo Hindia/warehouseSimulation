@@ -67,6 +67,11 @@ function drawRect(X0,Y0,X1,Y1){
 //the warehouse
 drawRect(10,100,canvas.width-200,canvas.height-50);
 
+//shelves
+drawRect(20,110,180,260);
+drawRect(20,310,180,460);
+drawRect(20,510,180,660);
+drawRect(20,710,180,860);
 //hints
 var hintsArray =[
 	'use arrow keys to move',
