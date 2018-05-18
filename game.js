@@ -11,6 +11,7 @@ c.drawImage(img, playerX, playerY,100,100);
 c.font="20px Tw Cen MT";
 c.fillText(steps, canvas.width-150,canvas.height-250);
  
+ 
  window.addEventListener("keydown", function (event){
 	var key= event.code;	//variable for holding the key pressed
 	if(playerY > 120 && (key == "ArrowUp")) {
@@ -54,15 +55,17 @@ c.fillText("VAMK + NOVIA", 10,30);
 c.font="small-caps 20px Arial";
 c.fillText("Warehouse Picking Basics: Pick and Learn!", 80,80);
 
+function drawRect(X0,Y0,X1,Y1){
+	c.beginPath();
+	c.moveTo(X0,Y0);
+	c.lineTo(X1,Y0);//
+	c.lineTo(X1,Y1);
+	c.lineTo(X0,Y1);
+	c.lineTo(X0,Y0);
+	c.stroke();
+}
 //the warehouse
-c.beginPath();
-c.moveTo(10,100);
-c.lineTo(canvas.width-200,100);//
-c.lineTo(canvas.width-200,100);
-c.lineTo(canvas.width-200,canvas.height-50);
-c.lineTo(10,canvas.height-50);
-c.lineTo(10,100);
-c.stroke();
+drawRect(10,100,canvas.width-200,canvas.height-50);
 
 //hints
 var hintsArray =[
