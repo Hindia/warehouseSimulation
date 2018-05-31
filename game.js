@@ -115,12 +115,24 @@ drawRect(250,350,400,500);
 drawRect(250,550,400,700);
 
 //vertical compartments
-drawLine(100,150,100,300);
-drawLine(150,150,150,300);
+drawLine(300,150,300,300);
+drawLine(350,150,350,300);
+
+drawLine(300,350,300,500);
+drawLine(350,350,350,500);
+
+drawLine(300,550,300,700);
+drawLine(350,550,350,700);
 
 //horizontal compartments
-drawLine(50,200,200,200);
-drawLine(50,250,200,250);
+drawLine(250,200,400,200);
+drawLine(250,250,400,250);
+
+drawLine(250,400,400,400);
+drawLine(250,450,400,450);
+
+drawLine(250,600,400,600);
+drawLine(250,650,400,650);
 
 //------------------------------------------------------------------------------
 
@@ -130,6 +142,26 @@ drawRect(450,150,600,300);
 drawRect(450,350,600,500);
 drawRect(450,550,600,700);
 
+//vertical compartments
+drawLine(500,150,500,300);
+drawLine(550,150,550,300);
+
+drawLine(500,350,500,500);
+drawLine(550,350,550,500);
+
+drawLine(500,550,500,700);
+drawLine(550,550,550,700);
+
+//horizontal compartments
+drawLine(450,200,600,200);
+drawLine(450,250,600,250);
+
+drawLine(450,400,600,400);
+drawLine(450,450,600,450);
+
+drawLine(450,600,600,600);
+drawLine(450,650,600,650);
+
 //------------------------------------------------------------------------------
 
 //shelf 10-12
@@ -137,12 +169,55 @@ drawRect(650,150,800,300);
 drawRect(650,350,800,500);
 drawRect(650,550,800,700);
 
+//vertical compartments
+drawLine(700,150,700,300);
+drawLine(750,150,750,300);
+
+drawLine(700,350,700,500);
+drawLine(750,350,750,500);
+
+drawLine(700,550,700,700);
+drawLine(750,550,750,700);
+
+//horizontal compartments
+drawLine(650,200,800,200);
+drawLine(650,250,800,250);
+
+drawLine(650,400,800,400);
+drawLine(650,450,800,450);
+
+drawLine(650,600,800,600);
+drawLine(650,650,800,650);
+
+
 //------------------------------------------------------------------------------
 
 //shelf 13-15
 drawRect(850,150,1000,300);
 drawRect(850,350,1000,500);
 drawRect(850,550,1000,700);
+
+//vertical compartments
+drawLine(900,150,900,300);
+drawLine(950,150,950,300);
+
+drawLine(900,350,900,500);
+drawLine(950,350,950,500);
+
+drawLine(900,550,900,700);
+drawLine(950,550,950,700);
+
+//horizontal compartments
+drawLine(850,200,1000,200);
+drawLine(850,250,1000,250);
+
+drawLine(850,400,1000,400);
+drawLine(850,450,1000,450);
+
+drawLine(850,600,1000,600);
+drawLine(850,650,1000,650);
+
+//------------------------------------------------------------------------
 
 //items in shelve 1
 putImage(60,160,"img/tv.png");
