@@ -258,6 +258,164 @@ putImage(60,660,"img/cycle.png");
 putImage(110,660,"img/cycle.png");
 putImage(160,660,"img/briefcase.png");
 
+//items in shelve 4
+putImage(260,160,"img/tv.png");
+putImage(310,160,"img/cycle.png");
+putImage(360,160,"img/tv.png");
+
+putImage(260,210,"img/cycle.png");
+putImage(310,210,"img/tv.png");
+putImage(360,210,"img/tv.png");
+
+putImage(260,260,"img/tv.png");
+putImage(310,260,"img/cycle.png");
+putImage(360,260,"img/tv.png");
+
+//items in shelve 5
+putImage(260,360,"img/briefcase.png");
+putImage(310,360,"img/briefcase.png");
+putImage(360,360,"img/briefcase.png");
+
+putImage(260,410,"img/briefcase.png");
+putImage(310,410,"img/cycle.png");
+putImage(360,410,"img/briefcase.png");
+
+putImage(260,460,"img/briefcase.png");
+putImage(310,460,"img/briefcase.png");
+putImage(360,460,"img/cycle.png");
+
+//items in shelve 6
+putImage(260,560,"img/cycle.png");
+putImage(310,560,"img/cycle.png");
+putImage(360,560,"img/cycle.png");
+
+putImage(260,610,"img/cycle.png");
+putImage(310,610,"img/tv.png");
+putImage(360,610,"img/tv.png");
+
+putImage(260,660,"img/cycle.png");
+putImage(310,660,"img/cycle.png");
+putImage(360,660,"img/briefcase.png");
+
+//items in shelve 7
+putImage(460,160,"img/tv.png");
+putImage(510,160,"img/cycle.png");
+putImage(560,160,"img/tv.png");
+
+putImage(460,210,"img/cycle.png");
+putImage(510,210,"img/tv.png");
+putImage(560,210,"img/tv.png");
+
+putImage(460,260,"img/tv.png");
+putImage(510,260,"img/cycle.png");
+putImage(560,260,"img/tv.png");
+
+//items in shelve 8
+putImage(460,360,"img/briefcase.png");
+putImage(510,360,"img/briefcase.png");
+putImage(560,360,"img/briefcase.png");
+
+putImage(460,410,"img/briefcase.png");
+putImage(510,410,"img/cycle.png");
+putImage(560,410,"img/briefcase.png");
+
+putImage(460,460,"img/briefcase.png");
+putImage(510,460,"img/briefcase.png");
+putImage(560,460,"img/cycle.png");
+
+//items in shelve 9
+putImage(460,560,"img/cycle.png");
+putImage(510,560,"img/cycle.png");
+putImage(560,560,"img/cycle.png");
+
+putImage(460,610,"img/cycle.png");
+putImage(510,610,"img/tv.png");
+putImage(560,610,"img/tv.png");
+
+putImage(460,660,"img/cycle.png");
+putImage(510,660,"img/cycle.png");
+putImage(560,660,"img/briefcase.png");
+
+//items in shelve 10
+putImage(660,160,"img/tv.png");
+putImage(710,160,"img/cycle.png");
+putImage(760,160,"img/tv.png");
+
+putImage(660,210,"img/cycle.png");
+putImage(710,210,"img/tv.png");
+putImage(760,210,"img/tv.png");
+
+putImage(660,260,"img/tv.png");
+putImage(710,260,"img/cycle.png");
+putImage(760,260,"img/tv.png");
+
+//items in shelve 11
+putImage(660,360,"img/briefcase.png");
+putImage(710,360,"img/briefcase.png");
+putImage(760,360,"img/briefcase.png");
+
+putImage(660,410,"img/briefcase.png");
+putImage(710,410,"img/cycle.png");
+putImage(760,410,"img/briefcase.png");
+
+putImage(660,460,"img/briefcase.png");
+putImage(710,460,"img/briefcase.png");
+putImage(760,460,"img/cycle.png");
+
+//items in shelve 12
+putImage(660,560,"img/cycle.png");
+putImage(710,560,"img/cycle.png");
+putImage(760,560,"img/cycle.png");
+
+putImage(660,610,"img/cycle.png");
+putImage(710,610,"img/tv.png");
+putImage(760,610,"img/tv.png");
+
+putImage(660,660,"img/cycle.png");
+putImage(710,660,"img/cycle.png");
+putImage(760,660,"img/briefcase.png");
+
+//items in shelve 13
+putImage(860,160,"img/tv.png");
+putImage(910,160,"img/cycle.png");
+putImage(960,160,"img/tv.png");
+
+putImage(860,210,"img/cycle.png");
+putImage(910,210,"img/tv.png");
+putImage(960,210,"img/tv.png");
+
+putImage(860,260,"img/tv.png");
+putImage(910,260,"img/cycle.png");
+putImage(960,260,"img/tv.png");
+
+//items in shelve 14
+putImage(860,360,"img/briefcase.png");
+putImage(910,360,"img/briefcase.png");
+putImage(960,360,"img/briefcase.png");
+
+putImage(860,410,"img/briefcase.png");
+putImage(910,410,"img/cycle.png");
+putImage(960,410,"img/briefcase.png");
+
+putImage(860,460,"img/briefcase.png");
+putImage(910,460,"img/briefcase.png");
+putImage(960,460,"img/cycle.png");
+
+//items in shelve 15
+putImage(860,560,"img/cycle.png");
+putImage(910,560,"img/cycle.png");
+putImage(960,560,"img/cycle.png");
+
+putImage(860,610,"img/cycle.png");
+putImage(910,610,"img/tv.png");
+putImage(960,610,"img/tv.png");
+
+putImage(860,660,"img/cycle.png");
+putImage(910,660,"img/cycle.png");
+putImage(960,660,"img/briefcase.png");
+
+
+
 //hints
 var hintsArray =[
 	'use arrow keys to move',
