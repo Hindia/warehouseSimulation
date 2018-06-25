@@ -1,16 +1,51 @@
-var canvas = document.getElementById('canvas');
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-var c = canvas.getContext("2d");
 var steps=0;
-var playerX=50;
-var playerY=canvas.height-200;
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+        this.c = this.canvas.getContext("2d");	//context
+		this.c.font="20px Tw Cen MT";
+		this.c.fillText(steps, canvas.width-150,canvas.height-250);
+		this.c.fillStyle='black';
+		this.c.fillText("Time Lapse", canvas.width-180,canvas.height-500);
+		this.c.fillText("Total Steps", canvas.width-180,canvas.height-300);
+		this.c.fillText("Pick up list", canvas.width-180,canvas.height-800);
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 20);
+    },
+    clear : function() {
+        this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
 
-function putImage(X,Y,src)
+function startGame() {
+	myPlayer = new component(50,canvas.height-200,"img/person.png");
+    myGameArea.start();
+}
+startGame();
+
+function component(X,Y,src)
 {
 	var img = new Image();
 	img.src = src;
-	c.drawImage(img, X, Y,30,30);
+	this.x = X;
+    this.y = Y;  
+	this.speedX = 0;
+    this.speedY = 0;
+	this.update = function() {
+        ctx = myGameArea.c;
+		ctx.drawImage(img, this.x, this.y,30,30);
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;        
+    }     
+}
+
+function updateGameArea() {
+    myGameArea.clear();  
+    myPlayer.update();
 }
 
 function drawRect(X0,Y0,X1,Y1){
@@ -31,53 +66,36 @@ function drawLine(X0,Y0,X1,Y1){
 }
 
 
-putImage(playerX,playerY,"img/person.png");
-c.font="20px Tw Cen MT";
-c.fillText(steps, canvas.width-150,canvas.height-250);
  
  
  window.addEventListener("keydown", function (event){
 	var key= event.code;	//variable for holding the key pressed
 	if(playerY > 120 && (key == "ArrowUp")) {
 			steps+=1;
-			playerY -=10;
-			c.clearRect(10,100, canvas.width-250,canvas.height-200);
-			putImage(playerX,playerY,"img/person.png");
+			myPlayer.speedY-=1;
 			c.clearRect(canvas.width-200,canvas.height-280, canvas.width,canvas.height-100);
 			c.fillText(steps, canvas.width-150,canvas.height-250);
 		}
 	else if(playerY < canvas.height-200 && (key == "ArrowDown" )) {
 			steps+=1;
-			playerY +=10;
-			c.clearRect(10,100, canvas.width-250,canvas.height-200);
-			putImage(playerX,playerY,"img/person.png");
+			myPlayer.speedY+=1;
 			c.clearRect(canvas.width-200,canvas.height-280, canvas.width,canvas.height-100);
 			c.fillText(steps, canvas.width-150,canvas.height-250);
 		}
 		
 	else if(playerX >10 && (key == "ArrowLeft" )){
 			steps+=1;
-			playerX -=10;
-			c.clearRect(10,100, canvas.width-250,canvas.height-200);
-			putImage(playerX,playerY,"img/person.png");
+			myPlayer.speedX-=1;
 			c.clearRect(canvas.width-200,canvas.height-280, canvas.width,canvas.height-100);
 			c.fillText(steps, canvas.width-150,canvas.height-250);
 		}	
 	else if(playerX < canvas.width-350 && (key == "ArrowRight")){
 			steps+=1;
-			playerX +=10;
-			c.clearRect(10,100, canvas.width-250,canvas.height-200);
-			putImage(playerX,playerY,"img/person.png");
+			myPlayer.speedX+=1;
 			c.clearRect(canvas.width-200,canvas.height-280, canvas.width,canvas.height-100);
 			c.fillText(steps, canvas.width-150,canvas.height-250);
 		}	
 }, true);
-
-c.font="30px papyrus";
-c.fillText("VAMK + NOVIA", 10,30);
-
-c.font="small-caps 20px Arial";
-c.fillText("Warehouse Picking Basics: Pick and Learn!", 80,80);
 
 //the warehouse
 drawRect(10,100,canvas.width-200,canvas.height-50);
@@ -220,7 +238,7 @@ drawLine(850,650,1000,650);
 //------------------------------------------------------------------------
 
 //items in shelve 1
-putImage(60,160,"img/tv.png");
+putImage(60,160,"img/ball.png");
 putImage(110,160,"img/cycle.png");
 putImage(160,160,"img/tv.png");
 
@@ -246,8 +264,8 @@ putImage(110,460,"img/briefcase.png");
 putImage(160,460,"img/cycle.png");
 
 //items in shelve 3
-putImage(60,560,"img/cycle.png");
-putImage(110,560,"img/cycle.png");
+putImage(60,560,"img/headphone.png");
+putImage(110,560,"img/camera.png");
 putImage(160,560,"img/cycle.png");
 
 putImage(60,610,"img/cycle.png");
@@ -261,20 +279,20 @@ putImage(160,660,"img/briefcase.png");
 //items in shelve 4
 putImage(260,160,"img/tv.png");
 putImage(310,160,"img/cycle.png");
-putImage(360,160,"img/tv.png");
+putImage(360,160,"img/camera.png");
 
 putImage(260,210,"img/cycle.png");
-putImage(310,210,"img/tv.png");
-putImage(360,210,"img/tv.png");
+putImage(310,210,"img/mic.png");
+putImage(360,210,"img/mic.png");
 
 putImage(260,260,"img/tv.png");
 putImage(310,260,"img/cycle.png");
-putImage(360,260,"img/tv.png");
+putImage(360,260,"img/camera.png");
 
 //items in shelve 5
-putImage(260,360,"img/briefcase.png");
+putImage(260,360,"img/mic.png");
 putImage(310,360,"img/briefcase.png");
-putImage(360,360,"img/briefcase.png");
+putImage(360,360,"img/mic.png");
 
 putImage(260,410,"img/briefcase.png");
 putImage(310,410,"img/cycle.png");
@@ -319,8 +337,8 @@ putImage(460,410,"img/briefcase.png");
 putImage(510,410,"img/cycle.png");
 putImage(560,410,"img/briefcase.png");
 
-putImage(460,460,"img/briefcase.png");
-putImage(510,460,"img/briefcase.png");
+putImage(460,460,"img/pencil.png");
+putImage(510,460,"img/pencil.png");
 putImage(560,460,"img/cycle.png");
 
 //items in shelve 9
@@ -350,7 +368,7 @@ putImage(710,260,"img/cycle.png");
 putImage(760,260,"img/tv.png");
 
 //items in shelve 11
-putImage(660,360,"img/briefcase.png");
+putImage(660,360,"img/pencil.png");
 putImage(710,360,"img/briefcase.png");
 putImage(760,360,"img/briefcase.png");
 
@@ -358,17 +376,17 @@ putImage(660,410,"img/briefcase.png");
 putImage(710,410,"img/cycle.png");
 putImage(760,410,"img/briefcase.png");
 
-putImage(660,460,"img/briefcase.png");
+putImage(660,460,"img/camera.png");
 putImage(710,460,"img/briefcase.png");
 putImage(760,460,"img/cycle.png");
 
 //items in shelve 12
-putImage(660,560,"img/cycle.png");
+putImage(660,560,"img/pencil.png");
 putImage(710,560,"img/cycle.png");
 putImage(760,560,"img/cycle.png");
 
 putImage(660,610,"img/cycle.png");
-putImage(710,610,"img/tv.png");
+putImage(710,610,"img/pencil.png");
 putImage(760,610,"img/tv.png");
 
 putImage(660,660,"img/cycle.png");
@@ -381,7 +399,7 @@ putImage(910,160,"img/cycle.png");
 putImage(960,160,"img/tv.png");
 
 putImage(860,210,"img/cycle.png");
-putImage(910,210,"img/tv.png");
+putImage(910,210,"img/pencil.png");
 putImage(960,210,"img/tv.png");
 
 putImage(860,260,"img/tv.png");
@@ -390,72 +408,28 @@ putImage(960,260,"img/tv.png");
 
 //items in shelve 14
 putImage(860,360,"img/briefcase.png");
-putImage(910,360,"img/briefcase.png");
+putImage(910,360,"img/ball.png");
 putImage(960,360,"img/briefcase.png");
 
-putImage(860,410,"img/briefcase.png");
-putImage(910,410,"img/cycle.png");
+putImage(860,410,"img/ball.png");
+putImage(910,410,"img/ball.png");
 putImage(960,410,"img/briefcase.png");
 
 putImage(860,460,"img/briefcase.png");
 putImage(910,460,"img/briefcase.png");
-putImage(960,460,"img/cycle.png");
+putImage(960,460,"img/ball.png");
 
 //items in shelve 15
-putImage(860,560,"img/cycle.png");
-putImage(910,560,"img/cycle.png");
-putImage(960,560,"img/cycle.png");
+putImage(860,560,"img/ball.png");
+putImage(910,560,"img/ball.png");
+putImage(960,560,"img/headphone.png");
 
-putImage(860,610,"img/cycle.png");
+putImage(860,610,"img/headphone.png");
 putImage(910,610,"img/tv.png");
 putImage(960,610,"img/tv.png");
 
-putImage(860,660,"img/cycle.png");
-putImage(910,660,"img/cycle.png");
-putImage(960,660,"img/briefcase.png");
+putImage(860,660,"img/headphone.png");
+putImage(910,660,"img/headphone.png");
+putImage(960,660,"img/headphone.png");
 
 
-
-//hints
-var hintsArray =[
-	'use arrow keys to move',
-	'click the item to pick it',
-	'doubleclick to swap',
-	'clock is ticking!!',
-	'Take the shortest route ',
-	'You are almost done',
-];
-
-var colorArray =[
-	'black',
-	'green',
-	'red',
-	'blue',
-	'purple ',
-];
-
-function animate(){
-	
-	setTimeout(function(){
-		requestAnimationFrame(animate);
-	},1300);
-	c.clearRect(canvas.width-400,0, canvas.width,canvas.height-850);
-	var message=hintsArray[Math.floor(Math.random()*hintsArray.length)];
-	var color= colorArray[Math.floor(Math.random()*colorArray.length)];
-	c.font="30px jokerman";
-	c.fillStyle=color;
-	c.fillText(message, canvas.width-400,canvas.height-900);
-	
-
-}
-animate();
-c.fillStyle='black';
-//counters
-c.font="20px Tw Cen MT";
-c.fillText("Time Lapse", canvas.width-180,canvas.height-500);
-
-c.fillText("Total Steps", canvas.width-180,canvas.height-300);
-
-//pickup list
-
-c.fillText("Pick up list", canvas.width-180,canvas.height-800);
