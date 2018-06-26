@@ -16,7 +16,11 @@ var myGameArea = {
     },
     clear : function() {
         this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    stop : function() {
+        clearInterval(this.interval);
     }
+	
 }
 
 
