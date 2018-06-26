@@ -15,6 +15,9 @@
 	var steps=0;
 	var myPlayer;
 	var ball;
+	var timer;
+	var stepCounter;
+	var list;
 	
 	
 	var myGameArea = {
@@ -62,28 +65,45 @@
 var c ;
 var canvas=myGameArea.canvas;
 
-	function component(X,Y,src){
-		var img = new Image();
-		this.img=img;
+	function component(x,y,width, height,type,src){//X,Y,src
+		this.type=type;
+		this.width = width;
+		this.height = height;
 		this.src=src;
-		img.src = this.src;
-		this.x = X;
-		this.y = Y;  
+		this.x = x;
+		this.y = y;  
 		this.speedX = 0;
 		this.speedY = 0;
 		this.update = function() {
-        var ctx = myGameArea.c;
-		ctx.drawImage(this.img, this.x, this.y,30,30);
-    }
-    this.newPos = function() {
-        this.x += this.speedX;
-        this.y += this.speedY;        
+			var ctx = myGameArea.c;
+			if (this.type == "text") {
+				ctx.fillStyle = color;
+				ctx.fillText(this.text, this.x, this.y);
+			} else if (this.type == "img") {
+				ctx.drawImage(this.img, this.x, this.y,30,30);
+			}
+			else {
+				ctx.fillStyle = color;
+				ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+			
+		}
+		img.src = this.src;
+		var img = new Image();
+		this.img=img;
+		
+		this.newPos = function() {
+			this.x += this.speedX;
+			this.y += this.speedY;        
     }     
 }
 	
 	function startGame() {
-		myPlayer = new component(50,canvas.height-200,"img/person.png");
-		ball=new component(60,160,"img/ball.png");
+		myPlayer = new component(50,canvas.height-200,"img/person.png","img");
+		ball=new component(60,160,"img/ball.png","img");
+		timer=new component();
+		stepCounter=new component();
+		list=new component();
 		//items in shelve 1
 /*  putImage();
 putImage(110,160,"img/cycle.png");
