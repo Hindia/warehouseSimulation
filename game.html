@@ -16,25 +16,23 @@
 	var myPlayer;
 	var ball;
 	var timer;
+	var sec=0;
 	var stepCounter;
 	var list;
+	var items[];
 	
 	
 	var myGameArea = {
-    canvas : document.createElement("canvas"),
-    start : function() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-        this.c = this.canvas.getContext("2d");	//context
-		this.c.font="20px Tw Cen MT";
-		this.c.fillText(steps, canvas.width-150,canvas.height-250);
-		this.c.fillStyle='black';
-		this.c.fillText("Time Lapse", canvas.width-180,canvas.height-500);
-		this.c.fillText("Total Steps", canvas.width-180,canvas.height-300);
-		this.c.fillText("Pick up list", canvas.width-180,canvas.height-800);
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 20);
-    },
+		canvas : document.createElement("canvas"),
+		start : function() {
+			this.canvas.width = window.innerWidth;
+			this.canvas.height = window.innerHeight;
+			this.c = this.canvas.getContext("2d");	//context
+			this.c.font="20px Tw Cen MT";
+			this.c.fillStyle='black';
+			document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+			this.interval = setInterval(updateGameArea, 20);
+		},
 	/*drawRect: function (X0,Y0,X1,Y1){
 		this.c.beginPath();
 		this.c.moveTo(X0,Y0);
@@ -52,24 +50,24 @@
 	},
 	myTimer: function (){
 		sec+=1;
-		this.c.fillText(sec, canvas.width-180,canvas.height-450);	
-	},
-    clear : function() {
-        this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    },*/
-    stop : function() {
-        clearInterval(this.interval);
-    }
+	},*/
+		clear : function() {
+			this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		},
+		stop : function() {
+			clearInterval(this.interval);
+		}
 	
-}
-var c ;
-var canvas=myGameArea.canvas;
+	}
 
-	function component(x,y,width, height,type,src){//X,Y,src
+	var canvas=myGameArea.canvas;
+	var c=myGameArea.c;
+
+	function component(x,y,width, height,type){//X,Y,src
 		this.type=type;
 		this.width = width;
 		this.height = height;
-		this.src=src;
+		//this.src=src;
 		this.x = x;
 		this.y = y;  
 		this.speedX = 0;
@@ -80,30 +78,43 @@ var canvas=myGameArea.canvas;
 				ctx.fillStyle = color;
 				ctx.fillText(this.text, this.x, this.y);
 			} else if (this.type == "img") {
+				img.src = this.src;
+				var img = new Image();
+				this.img=img;
 				ctx.drawImage(this.img, this.x, this.y,30,30);
 			}
 			else {
 				ctx.fillStyle = color;
 				ctx.fillRect(this.x, this.y, this.width, this.height);
-        }
+			}
 			
 		}
-		img.src = this.src;
-		var img = new Image();
-		this.img=img;
+		
 		
 		this.newPos = function() {
 			this.x += this.speedX;
 			this.y += this.speedY;        
-    }     
-}
+		}     
+	}
+	
+	function updateGameArea() {
+		//myGameArea.stop(); ALSO, if game over stop myTimer
+		myGameArea.clear();
+		timer.text="Time Lapse "+sec;
+		list.text="Pick up list"+items[];
+		stepCounter.text="Total Steps "+ steps;	
+		myPlayer.newPos();
+		myPlayer.update();
+	}
 	
 	function startGame() {
+		 myGameArea.start();
+		//var myVar=setInterval(myGameArea.myTimer,1000);
 		myPlayer = new component(50,canvas.height-200,"img/person.png","img");
 		ball=new component(60,160,"img/ball.png","img");
-		timer=new component();
-		stepCounter=new component();
-		list=new component();
+		timer=new component(canvas.width-180,canvas.height-500, "text");
+		stepCounter=new component( canvas.width-180,canvas.height-300,"text");
+		list=new component(canvas.width-180,canvas.height-800,"text");
 		//items in shelve 1
 /*  putImage();
 putImage(110,160,"img/cycle.png");
@@ -299,21 +310,8 @@ putImage(860,660,"img/headphone.png");
 putImage(910,660,"img/headphone.png");
 putImage(960,660,"img/headphone.png"); 
 */
-    myGameArea.start();
+   
 }
-
-	function updateGameArea() {
-		//myGameArea.clear();  
-		myPlayer.newPos();
-		myPlayer.update();
-	}
-
-//var sec=0;
-//var myVar=setInterval(myGameArea.myTimer,1000);
-var c=myGameArea.c;
-
-
- 
  
  window.addEventListener("keydown", function (event){
 	var key= event.code;	//variable for holding the key pressed
