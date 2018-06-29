@@ -39,8 +39,24 @@
 			this.canvas.height = window.innerHeight;
 			this.c = this.canvas.getContext("2d");	//context
 			document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-			this.interval = setInterval(updateGameArea, 20);
-		},
+			this.interval = setInterval(updateGameArea, 1000);
+			window.addEventListener('mousedown', function (e) {
+				myGameArea.x = e.pageX;
+				myGameArea.y = e.pageY;
+			})
+			window.addEventListener('mouseup', function (e) {
+				myGameArea.x = false;
+				myGameArea.y = false;
+			})
+			window.addEventListener('touchstart', function (e) {
+				myGameArea.x = e.pageX;
+			myGameArea.y = e.pageY;
+			})
+			window.addEventListener('touchend', function (e) {
+				myGameArea.x = false;
+				myGameArea.y = false;
+			})
+		}, 
 		myTimer: function (){
 			sec+=1;
 		},
@@ -78,6 +94,17 @@
 			}
 			
 		}
+		this.clicked = function() {
+			var myleft = this.x;
+			var myright = this.x + (this.width);
+			var mytop = this.y;
+			var mybottom = this.y + (this.height);
+			var clicked = true;
+			if ((mybottom < myGameArea.y) || (mytop > myGameArea.y)|| (myright < myGameArea.x) || (myleft > myGameArea.x)) {
+				clicked = false;
+			}
+			return clicked;
+		}
 		
 		this.newPos = function() {
 			this.x += this.speedX;
@@ -95,8 +122,15 @@
 		for(x=50; x<=1000; x+=50){
 			for(y=150; y<=700; y+=50){
 				if(x%200!=0 && y!=300 && y!=500 && y!=700){
-					compartments.push(new component(x,y, "black",45,45));
+					compartments.push(new component(x,y, "black",48,48));
 					}
+			}
+		}
+		
+		
+		for (i = 0; i < compartments.length; i += 1) {
+			if (compartments[i].clicked()){
+				compartments[i].color="pink";
 			}
 		}
 		for (i = 0; i < compartments.length; i += 1) {
@@ -307,22 +341,22 @@ putImage(960,660,"img/headphone.png");
  
  window.addEventListener("keydown", function (event){
 	var key= event.code;	//variable for holding the key pressed
-	if(playerY > 120 && (key == "ArrowUp")) {
+	if(myPlayer.y > 120 && (key == "ArrowUp")) {
 			steps+=1;
-			myPlayer.speedY-=1;
+			myPlayer.y-=48;
 		}
-	else if(playerY < myGameArea.canvas.height-200 && (key == "ArrowDown" )) {
+	else if(myPlayer.y < myGameArea.canvas.height-200 && (key == "ArrowDown" )) {
 			steps+=1;
-			myPlayer.speedY+=1;
+			myPlayer.y+=48;
 		}
 		
-	else if(playerX >10 && (key == "ArrowLeft" )){
+	else if(myPlayer.x >10 && (key == "ArrowLeft" )){
 			steps+=1;
-			myPlayer.speedX-=1;
+			myPlayer.x-=48;
 		}	
-	else if(playerX < myGameArea.canvas.width-350 && (key == "ArrowRight")){
+	else if(myPlayer.x < myGameArea.canvas.width-350 && (key == "ArrowRight")){
 			steps+=1;
-			myPlayer.speedX+=1;
+			myPlayer.x+=48;
 		}	
 }, true);
 
