@@ -39,7 +39,7 @@
 			this.canvas.height = window.innerHeight;
 			this.c = this.canvas.getContext("2d");	//context
 			document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-			this.interval = setInterval(updateGameArea, 100);
+			this.interval = setInterval(updateGameArea, 1000);
 			window.addEventListener('mousedown', function (e) {
 				myGameArea.x = e.pageX;
 				myGameArea.y = e.pageY;
