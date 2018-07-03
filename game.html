@@ -13,14 +13,11 @@
 </head>
 <body onload="startGame()">
 	<script>
+	var secs=0;
 	var steps=0;
-	var myPlayer;
+	var ball, myPlayer, dir;
 	var compartments=[];
-	var ball;
-	var timer;
-	var sec=0;
-	var stepCounter;
-	var list;
+	var  list, timer, stepCounter;
 	var items=[];
 	
 	function startGame() {
@@ -28,9 +25,9 @@
 		//var myVar=setInterval(myGameArea.myTimer,1000);
 		myPlayer = new component(50,700,"img/person.png",30,30,"img");
 		ball=new component(60,160,"img/ball.png",30,30,"img");
-		timer=new component(1100,200,"black","20px","Tw Cen MT", "text");
-		stepCounter=new component( 1100,400,"black","20px","Tw Cen MT","text");
-		list=new component(1100,500,"black","20px","Tw Cen MT","text");
+		timer=new component(500,60,"black","30px","Tw Cen MT", "text");
+		stepCounter=new component( 200,60,"black","30px","Tw Cen MT","text");
+		list=new component(1060,200,"black","30px","Tw Cen MT","text");
 	}
 	
 	var myGameArea = {
@@ -130,9 +127,10 @@
 	
 	function updateGameArea() {
 		var x,y;
-		//myGameArea.stop(); ALSO, if game over stop myTimer
+		secs+=1;
+		//myGameArea.stop(); ALSO, if game over reset secs
 		myGameArea.clear();
-		timer.text="Time Lapse ";
+		timer.text="Timer: "+secs+" seconds";
 		list.text="Pick up list";//loop in items[]
 		stepCounter.text="Total Steps: "+ steps;
 		for(x=50; x<=1000; x+=50){
@@ -152,39 +150,57 @@
 			}
 		}
 		for (i = 0; i < compartments.length; i += 1) {
+			if(myPlayer.crashWith(compartments[i])){//find a faster way to check crash and update steps
+				if(dir==1){
+					myPlayer.y+=50;
+					steps-=1;
+				}
+				else if(dir==-1){
+					myPlayer.y-=50;
+					steps-=1;
+				}
+				else if(dir==2){
+					myPlayer.x-=50;
+					steps-=1;
+				}
+				else if(dir==-2){
+					myPlayer.x+=50;
+					steps-=1;
+				}
+				
+			}
 			compartments[i].update();
 		}
 		stepCounter.update();
 		list.update();
 		timer.update();
+		ball.update();
 		myPlayer.newPos();
 		myPlayer.update();
 	}
 	
 	 window.addEventListener("keydown", function (event){
 		var key= event.code;	//variable for holding the key pressed
-		
+		//myPlayer.color="img/cycle.png";
 		if(myPlayer.y > 120 && (key == "ArrowUp"))   {
-			for (i = 0; i < compartments.length; i += 1) {
-				if(myPlayer.crashWith(compartments[i])){
-					
-				}
-				
-			}
+			dir=1;
 			steps+=1;
 			myPlayer.y-=50;
 			
 		}
 		else if(myPlayer.y < myGameArea.canvas.height-200 && (key == "ArrowDown" )) {
+			dir=-1;
 			steps+=1;
 			myPlayer.y+=50;
 		}
 		
 		else if(myPlayer.x >10 && (key == "ArrowLeft" )){
+			dir=-2;
 			steps+=1;
 			myPlayer.x-=50;
 		}	
 		else if(myPlayer.x < myGameArea.canvas.width-300 && (key == "ArrowRight")){
+			dir=2;
 			steps+=1;
 			myPlayer.x+=50;
 		}	
