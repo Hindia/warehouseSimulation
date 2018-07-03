@@ -8,6 +8,7 @@
 	    border:1px solid #d3d3d3;
 		background-color: #f1f1f1;
 		}
+		
 	</style>
 </head>
 <body onload="startGame()">
@@ -27,9 +28,9 @@
 		//var myVar=setInterval(myGameArea.myTimer,1000);
 		myPlayer = new component(50,700,"img/person.png",30,30,"img");
 		ball=new component(60,160,"img/ball.png",30,30,"img");
-		timer=new component(800,500,"black","20px","Tw Cen MT", "text");
-		stepCounter=new component( 800,800,"black","20px","Tw Cen MT","text");
-		list=new component(800,1000,"black","20px","Tw Cen MT","text");
+		timer=new component(1100,200,"black","20px","Tw Cen MT", "text");
+		stepCounter=new component( 1100,400,"black","20px","Tw Cen MT","text");
+		list=new component(1100,500,"black","20px","Tw Cen MT","text");
 	}
 	
 	var myGameArea = {
@@ -80,16 +81,16 @@
 		this.speedY = 0;
 		this.update = function() {
 			var ctx = myGameArea.c;
-			if (type == "text") {
-				ctx.fillStyle = color;
+			if (this.type == "text") {
+				ctx.font = this.width + " " + this.height;
+				ctx.fillStyle = this.color;
 				ctx.fillText(this.text, this.x, this.y);
-			} else if (type == "img") {
+			} else if (this.type == "img") {
 				this.img = new Image();
 				this.img.src =this.color;
 				ctx.drawImage(this.img, this.x, this.y,this.width, this.height);
 			}
 			else {
-				ctx.font = this.width + " " + this.height;
 				ctx.fillStyle = this.color;
 				ctx.fillRect(this.x, this.y, this.width, this.height);
 			}
@@ -131,9 +132,9 @@
 		var x,y;
 		//myGameArea.stop(); ALSO, if game over stop myTimer
 		myGameArea.clear();
-		//timer.text="Time Lapse "+sec;
-		//list.text="Pick up list";//loop in items[]
-		//stepCounter.text="Total Steps "+ steps;
+		timer.text="Time Lapse ";
+		list.text="Pick up list";//loop in items[]
+		stepCounter.text="Total Steps: "+ steps;
 		for(x=50; x<=1000; x+=50){
 			for(y=150; y<=700; y+=50){
 				if(x%200!=0 && y!=300 && y!=500 && y!=700){
@@ -151,9 +152,11 @@
 			}
 		}
 		for (i = 0; i < compartments.length; i += 1) {
-				
-				compartments[i].update();
-			}
+			compartments[i].update();
+		}
+		stepCounter.update();
+		list.update();
+		timer.update();
 		myPlayer.newPos();
 		myPlayer.update();
 	}
@@ -164,13 +167,12 @@
 		if(myPlayer.y > 120 && (key == "ArrowUp"))   {
 			for (i = 0; i < compartments.length; i += 1) {
 				if(myPlayer.crashWith(compartments[i])){
-					alert("crash");
+					
 				}
 				
 			}
 			steps+=1;
 			myPlayer.y-=50;
-			alert("no crash");
 			
 		}
 		else if(myPlayer.y < myGameArea.canvas.height-200 && (key == "ArrowDown" )) {
