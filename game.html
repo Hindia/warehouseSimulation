@@ -15,11 +15,20 @@
 	<script>
 	var secs=0;
 	var steps=0;
-	var  myPlayer, dir;
+	var  myPlayer, dir,pic;
 	var compartments=[];
 	var  list, timer, stepCounter;
 	var requiredItems=[];
 	var availableItems=[];
+	var picsArray=[
+				"img/cycle.png",
+				"img/tv.png",
+				"img/briefcase.png",
+				"img/ball.png",
+				"img/headphone.png",
+				"img/camera.png",
+				"img/mic.png",
+		];
 	
 	function startGame() {
 		 myGameArea.start();
@@ -125,43 +134,28 @@
 	}
 	
 	function updateGameArea() {
-		var x,y;
-		var pic=[
-				"img/cycle.png",
-				"img/tv.png",
-				"img/briefcase.png",
-				"img/ball.png",
-				"img/headphone.png",
-				"img/camera.png",
-				"img/mic.png",
-				"img/mic.png",
-				"img/cycle.png",
-				"img/pencil.png",
-				"img/cycle.png",
-				"img/tv.png",
-				"img/briefcase.png",
-				"img/ball.png",
-				"img/headphone.png",
-				"img/camera.png",
-				"img/mic.png",
-				"img/cycle.png",
-				"img/cycle.png",
-				"img/pencil.png",
+		var x,y,z;
 		
-		];
 		
 		secs+=1;
 		//myGameArea.stop(); ALSO, if game over reset secs
 		myGameArea.clear();
 		timer.text="Timer: "+secs+" seconds";
 		list.text="Pick up list";//loop in items[]
+		list.text.concat("new");
 		stepCounter.text="Total Steps: "+ steps;
+		z=0;
+			
 		for(x=50; x<=1000; x+=50){
 			for(y=150; y<=700; y+=50){
 				if(x%200!=0 && y!=300 && y!=500 && y!=700){
-					var it=pic[x/50];
+					if(z>6){
+						z=0;
+					}
+					pic=picsArray[z];	
 					compartments.push(new component(x,y, "black",48,48));
-					availableItems.push(new component(x+10,y+10,it,30,30,"img"));
+					availableItems.push(new component(x+10,y+10,pic,30,30,"img"));
+					z+=1;
 					}
 			}
 		}
