@@ -35,7 +35,8 @@
 		myPlayer = new component(50,700,"img/person.png",30,30,"img");
 		timer=new component(500,800,"black","30px","Tw Cen MT", "text");
 		stepCounter=new component( 200,800,"black","30px","Tw Cen MT","text");
-		list=new component(1060,200,"black","30px","Tw Cen MT","text");
+		list=new component(1060,150,"black","30px","Tw Cen MT","text");
+		
 	}
 	
 	var myGameArea = {
@@ -135,17 +136,15 @@
 	
 	function updateGameArea() {
 		var x,y,z;
-		
-		
+		var yt=180;		
 		secs+=1;
 		//myGameArea.stop(); ALSO, if game over reset secs
 		myGameArea.clear();
 		timer.text="Timer: "+secs+" seconds";
 		list.text="Pick up list";//loop in items[]
-		list.text.concat("new");
 		stepCounter.text="Total Steps: "+ steps;
+		
 		z=0;
-			
 		for(x=50; x<=1000; x+=50){
 			for(y=150; y<=700; y+=50){
 				if(x%200!=0 && y!=300 && y!=500 && y!=700){
@@ -155,6 +154,10 @@
 					pic=picsArray[z];	
 					compartments.push(new component(x,y, "black",48,48));
 					availableItems.push(new component(x+10,y+10,pic,30,30,"img"));
+					if(x<500){
+						requiredItems.push(new component(1080,yt,pic,30,30,"img"));
+						yt+=50;
+					}
 					z+=1;
 					}
 			}
@@ -187,6 +190,9 @@
 			}
 			compartments[i].update();
 			availableItems[i].update();
+			if(i<11){
+				requiredItems[i].update();
+			}
 		}
 		
 		stepCounter.update();
