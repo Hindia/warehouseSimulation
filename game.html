@@ -208,19 +208,43 @@
 		var key= event.code;	//variable for holding the key pressed
 		//myPlayer.color="img/cycle.png";
 		if(myPlayer.y > 120 && (key == "ArrowUp"))   {
+			if(prevImg=="img/person4.png" ){
+				myPlayer.color="img/person3.png";
+				prevImg="img/person3.png";
+				}
+				else{
+					myPlayer.color="img/person4.png";
+					prevImg="img/person4.png";
+				}
 			direction=1;
 			steps+=1;
-			myPlayer.y-=50;
+			myPlayer.y-=15;
 		}
 		else if(myPlayer.y < myGameArea.canvas.height-200 && (key == "ArrowDown" )) {
+			if(prevImg=="img/person4.png"){
+				myPlayer.color="img/person3.png";
+				prevImg="img/person3.png";
+				}
+				else{
+					myPlayer.color="img/person4.png";
+					prevImg="img/person4.png";
+				}
 			direction=-1;
 			steps+=1;
-			myPlayer.y+=50;
+			myPlayer.y+=15;
 		}
 		else if(myPlayer.x >10 && (key == "ArrowLeft" )){
+			if(prevImg=="img/person6.png"){
+				myPlayer.color="img/person5.png";
+				prevImg="img/person5.png";
+				}
+				else{
+					myPlayer.color="img/person6.png";
+					prevImg="img/person6.png";
+				}
 			direction=-2;
 			steps+=1;
-			myPlayer.x-=50;
+			myPlayer.x-=15;
 		}	
 		else if(myPlayer.x < myGameArea.canvas.width-300 && (key == "ArrowRight")){
 			if(prevImg=="img/person.png"){
@@ -233,7 +257,7 @@
 				}
 			direction=2;
 			steps+=1;
-			myPlayer.x+=20;
+			myPlayer.x+=15;
 		}	
 	}, true);
 		
