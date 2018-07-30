@@ -16,6 +16,7 @@
 	<script>
 	var secs=0;
 	var steps=0;
+	var ms=0;
 	var  myPlayer, direction,pic,prevImg;
 	var compartments=[];
 	var  list, timer, stepCounter;
@@ -47,7 +48,28 @@
 			this.canvas.height = window.innerHeight;
 			this.c = this.canvas.getContext("2d");	//context
 			document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-			this.interval = setInterval(updateGameArea, 1000);
+			var x,y,z;
+		var yt=180;		
+			z=0;
+		for(x=50; x<=1000; x+=50){
+			for(y=150; y<=700; y+=50){
+				if(x%200!=0 && y!=300 && y!=500 && y!=700){
+					if(z>6){
+						z=0;
+					}
+					pic=picsArray[z];	
+					compartments.push(new component(x,y, "black",48,48));
+					
+					availableItems.push(new component(x+10,y+10,pic,30,30,"img"));
+					if(x<500){
+						requiredItems.push(new component(1080,yt,pic,30,30,"img"));
+						yt+=50;
+					}
+					z+=1;
+					}
+			}
+		}
+			this.interval = setInterval(updateGameArea, 50);
 			window.addEventListener('mousedown', function (e) {
 				myGameArea.x = e.pageX;
 				myGameArea.y = e.pageY;
@@ -137,61 +159,49 @@
 	}
 	
 	function updateGameArea() {
-		var x,y,z;
-		var yt=180;		
-		secs+=1;
+		ms+=1;
+		if(ms%20==0){
+			secs+=1;
+		}
+		
 		//myGameArea.stop(); ALSO, if game over reset secs
 		myGameArea.clear();
 		timer.text="Timer: "+secs+" seconds";
 		list.text="Pick up list";//loop in items[]
 		stepCounter.text="Total Steps: "+ steps;
 		
-		z=0;
-		for(x=50; x<=1000; x+=50){
-			for(y=150; y<=700; y+=50){
-				if(x%200!=0 && y!=300 && y!=500 && y!=700){
-					if(z>6){
-						z=0;
-					}
-					pic=picsArray[z];	
-					compartments.push(new component(x,y, "black",48,48));
-					availableItems.push(new component(x+10,y+10,pic,30,30,"img"));
-					if(x<500){
-						requiredItems.push(new component(1080,yt,pic,30,30,"img"));
-						yt+=50;
-					}
-					z+=1;
-					}
-			}
-		}
 		
 		
 		if (myGameArea.x && myGameArea.y) {
-			for (i = 0; i < compartments.length; i += 1) {
-				if (compartments[i].clicked()){
-					compartments[i].color="gray";
+				for (i = 0; i <availableItems.length; i += 1) {
+					if (availableItems[i].clicked()){
+						availableItems[i].color="img/black.png";
+					}
 				}
 			}
-		}
+		
 	
 		for (i = 0; i < compartments.length; i += 1) {
 			if(myPlayer.crashWith(compartments[i])){//find a faster way to check crash and update steps
 				steps-=1;
 				if(direction==1){
-					myPlayer.y+=50;
+					myPlayer.y+=15;
 				}
 				else if(direction==-1){
-					myPlayer.y-=50;
+					myPlayer.y-=15;
 				}
 				else if(direction==2){
-					myPlayer.x-=50;
+					myPlayer.x-=15;
 				}
 				else if(direction==-2){
-					myPlayer.x+=50;
+					myPlayer.x+=15;
 				}
 			}
 			compartments[i].update();
-			availableItems[i].update();
+			
+			
+				availableItems[i].update();
+			
 			if(i<11){
 				requiredItems[i].update();
 			}
