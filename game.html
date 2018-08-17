@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1,user-scalable=no"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="HandheldFriendly" content="true">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<title>game</title>
 	<style>
 	canvas {
 	    border:1px solid #d3d3d3;
-		background-color: #f1f1f1;
+		background-color: "white";
 		}
+	
+	#content {
+		  position: absolute;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+		  top: 50%;
+	}
 		
 	</style>
 </head>
 <body onload="startGame()">
 	<script>
+	//STILL WORKING ON RESPONSIVENESS OF THE WEBPAGE
 	var secs=0;
 	var steps=0;
 	var ms=0;
@@ -53,19 +63,19 @@
 			z=0;
 		for(x=50; x<=1000; x+=50){
 			for(y=150; y<=700; y+=50){
-				if(x%200!=0 && y!=300 && y!=500 && y!=700){
+				if(x%150!=0 && y!=400 && y!=700){
 					if(z>6){
 						z=0;
 					}
 					pic=picsArray[z];	
 					compartments.push(new component(x,y, "black",48,48));
-					
 					availableItems.push(new component(x+10,y+10,pic,30,30,"img"));
 					if(x<500){
 						requiredItems.push(new component(1080,yt,pic,30,30,"img"));
 						yt+=50;
+						z+=1;
 					}
-					z+=1;
+					
 					}
 			}
 		}
@@ -228,7 +238,7 @@
 			steps+=1;
 			myPlayer.y-=15;
 		}
-		else if(myPlayer.y < myGameArea.canvas.height-200 && (key == "ArrowDown" )) {
+		else if(myPlayer.y < 710 && (key == "ArrowDown" )) {
 			if(prevImg=="img/person4.png"){
 				myPlayer.color="img/person3.png";
 				prevImg="img/person3.png";
@@ -254,7 +264,7 @@
 			steps+=1;
 			myPlayer.x-=15;
 		}	
-		else if(myPlayer.x < myGameArea.canvas.width-300 && (key == "ArrowRight")){
+		else if(myPlayer.x < 1050&& (key == "ArrowRight")){
 			if(prevImg=="img/person.png"){
 				myPlayer.color="img/person2.png";
 				prevImg="img/person2.png";
