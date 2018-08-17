@@ -33,13 +33,56 @@
 	var requiredItems=[];
 	var availableItems=[];
 	var picsArray=[
-				"img/cycle.png",
-				"img/tv.png",
-				"img/briefcase.png",
+				"img/bag.png",
 				"img/ball.png",
-				"img/headphone.png",
+				"img/book.png",
+				"img/briefcase.png",
+				"img/brush.png",
+				"img/bulb.png",
+				"img/calculator.png",
 				"img/camera.png",
+				"img/chair.png",
+				"img/comb.png",
+				"img/cycle.png",
+				"img/drill.png",
+				"img/fan.png",
+				"img/glasses.png",
+				"img/hammer.png",
+				"img/hanger.png",
+				"img/hat.png",
+				"img/headphone.png",
+				"img/ipod.png",
+				"img/iron.png",
+				"img/joystick.png",
+				"img/keyboard.png",
+				"img/lock.png",
 				"img/mic.png",
+				"img/microwave.png",
+				"img/mixer.png",
+				"img/mobile.png",
+				"img/mouse.png",
+				"img/pencil.png",
+				"img/pillow.png",
+				"img/plier.png",
+				"img/printer.png",
+				"img/ruler.png",
+				"img/saw.png",
+				"img/scale.png",
+				"img/scissor.png",
+				"img/screw.png",
+				"img/screwdriver.png",
+				"img/shovel.png",
+				"img/sofa.png",
+				"img/stapler.png",
+				"img/tablet.png",
+				"img/toilet paper.png",
+				"img/tv.png",
+				"img/umbrella.png",
+				"img/vacuum.png",
+				"img/videocam.png",
+				"img/washing machine.png",
+				
+				
 		];
 	
 	function startGame() {
@@ -64,18 +107,16 @@
 		for(x=50; x<=1000; x+=50){
 			for(y=150; y<=700; y+=50){
 				if(x%150!=0 && y!=400 && y!=700){
-					if(z>6){
-						z=0;
-					}
+					
 					pic=picsArray[z];	
-					compartments.push(new component(x,y, "black",48,48));
+					compartments.push(new component(x,y, "gray",48,48));
 					availableItems.push(new component(x+10,y+10,pic,30,30,"img"));
 					if(x<500){
 						requiredItems.push(new component(1080,yt,pic,30,30,"img"));
 						yt+=50;
-						z+=1;
+						
 					}
-					
+					z+=1;
 					}
 			}
 		}
@@ -185,7 +226,7 @@
 		if (myGameArea.x && myGameArea.y) {
 				for (i = 0; i <availableItems.length; i += 1) {
 					if (availableItems[i].clicked()){
-						availableItems[i].color="img/black.png";
+						availableItems[i].color="gray";
 					}
 				}
 			}
