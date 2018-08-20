@@ -27,7 +27,7 @@
 	var secs=0;
 	var steps=0;
 	var ms=0;
-	var  myPlayer, direction,pic,prevImg;
+	var  myPlayer, desk, direction,pic,prevImg;
 	var compartments=[];
 	var  list, timer, stepCounter;
 	var requiredItems=[];
@@ -87,10 +87,11 @@
 	
 	function startGame() {
 		 myGameArea.start();
-		myPlayer = new component(50,700,"img/person.png",30,30,"img");
+		myPlayer = new component(780,150,"img/person.png",30,30,"img");
 		timer=new component(500,800,"black","30px","Tw Cen MT", "text");
 		stepCounter=new component( 200,800,"black","30px","Tw Cen MT","text");
-		list=new component(1060,150,"black","30px","Tw Cen MT","text");
+		list=new component(850,150,"black","30px","Tw Cen MT","text");
+		desk=new component(810,150,"img/desk.png",30,30,"img");
 		
 	}
 	
@@ -104,7 +105,7 @@
 			var x,y,z;
 		var yt=180;		
 			z=0;
-		for(x=50; x<=1000; x+=50){
+		for(x=50; x<=700; x+=50){
 			for(y=150; y<=700; y+=50){
 				if(x%150!=0 && y!=400 && y!=700){
 					
@@ -252,10 +253,10 @@
 			availableItems[i].update();
 			
 			if(i<11){
-				requiredItems[i].update();
+				//requiredItems[i].update();
 			}
 		}
-		
+		desk.update();
 		stepCounter.update();
 		list.update();
 		timer.update();
@@ -266,7 +267,7 @@
 	 window.addEventListener("keydown", function (event){
 		var key= event.code;	//variable for holding the key pressed
 		//myPlayer.color="img/cycle.png";
-		if(myPlayer.y > 120 && (key == "ArrowUp"))   {
+		if(myPlayer.y > 110 && (key == "ArrowUp"))   {
 			if(prevImg=="img/person4.png" ){
 				myPlayer.color="img/person3.png";
 				prevImg="img/person3.png";
@@ -279,7 +280,7 @@
 			steps+=1;
 			myPlayer.y-=15;
 		}
-		else if(myPlayer.y < 710 && (key == "ArrowDown" )) {
+		else if(myPlayer.y < 700 && (key == "ArrowDown" )) {
 			if(prevImg=="img/person4.png"){
 				myPlayer.color="img/person3.png";
 				prevImg="img/person3.png";
@@ -305,7 +306,7 @@
 			steps+=1;
 			myPlayer.x-=15;
 		}	
-		else if(myPlayer.x < 1050&& (key == "ArrowRight")){
+		else if(myPlayer.x < 780&& (key == "ArrowRight")){
 			if(prevImg=="img/person.png"){
 				myPlayer.color="img/person2.png";
 				prevImg="img/person2.png";
